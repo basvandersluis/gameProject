@@ -52,17 +52,19 @@ class Game {
                 speed: 9,
             }
         ];
+        this.playerImg = loadImage("./Images/playerImg.png");
     }
 
     setupGame() {
-        this.background = new Background()
+        this.background = new Background();
         this.background.images = this.backgroundImgs;
         this.player = new Player();
-        this.player.images = this.playerImg;
+        this.player.image = this.playerImg;
     }
 
     drawGame() {
         clear();
         this.background.drawBackground();
+        this.player.drawPlayer();
     }
 }
