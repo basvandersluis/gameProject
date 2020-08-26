@@ -1,6 +1,6 @@
 class Game {
     constructor() {
-
+        this.obstacles = [];
     }
 
     preloadGame() {
@@ -52,7 +52,8 @@ class Game {
                 speed: 9,
             }
         ];
-        this.playerImg = loadImage("./Images/playerImg.png");
+        this.playerImg = loadImage("./Images/bean.png");
+        this.burgerImg = loadImage("./Images/burger.png");
     }
 
     setupGame() {
@@ -66,5 +67,21 @@ class Game {
         clear();
         this.background.drawBackground();
         this.player.drawPlayer();
+
+        if (frameCount % 60 === 0) {
+            this.obstacles.push(new Obstacle(this.burgerImg));  
+        }
+
+        this.obstacles.forEach((obstacle) => {
+            obstacle.drawObstacle();
+        });
+
+        this.obstacles = this.obstacles.filter((obstacle) => {
+            if (obstacle.collision(this.player)) {
+                return false;
+            } else {
+                return true;
+            }
+        });
     }
 }
