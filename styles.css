@@ -1,0 +1,8 @@
+div {
+    height: 100vh;
+    width: 100vw;
+    background-size: 100%;
+    background-position: center;
+    background-image: url(./Images/startImg.png);
+    background-repeat: no-repeat
+}

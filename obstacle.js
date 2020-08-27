@@ -3,7 +3,7 @@ class Obstacle {
         this.height = 20;
         this.width = 50;
         this.x = width;
-        this.y = (Math.random() * height) / 1.5;
+        this.y = Math.random() * ((height - 30) - this.height) + this.height;
         this.image = img;
     }
 
@@ -14,15 +14,15 @@ class Obstacle {
         let playerY = playerInfo.y + playerInfo.height / 2;
         console.log(obstacleX, obstacleY, playerX, playerY);
 
-        if (dist(obstacleX, obstacleY, playerX, playerY) < 50) {
+        if (dist(obstacleX, obstacleY, playerX, playerY) < 150) {
             return true;
+        
         }
     }
     
     drawObstacle() {
         this.x -= 4;
         console.log("working?");
-        
         image(this.image, this.x, this.y, this.width, this.height);
         
     }

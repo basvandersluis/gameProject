@@ -1,6 +1,8 @@
 class Game {
     constructor() {
         this.obstacles = [];
+        this.score = 0;
+        this.endGame=false
     }
 
     preloadGame() {
@@ -9,47 +11,7 @@ class Game {
             {
                 src: loadImage("./Images/backgroundbegin.png"),
                 x: 0,
-                speed: 1,
-            },
-            {
-                src: loadImage("./Images/background7.png"),
-                x: 0,
-                speed: 2,
-            },
-            {
-                src: loadImage("./Images/background6.png"),
-                x: 0,
-                speed: 3,
-            },
-            {
-                src: loadImage("./Images/background3.png"),
-                x: 0,
-                speed: 4,
-            },
-            {
-                src: loadImage("./Images/background2.png"),
-                x: 0,
-                speed: 5,
-            },
-            {
-                src: loadImage("./Images/background5.png"),
-                x: 0,
-                speed: 6,
-            },
-            {
-                src: loadImage("./Images/background1.png"),
-                x: 0,
-                speed: 7,
-            },
-            {
-                src: loadImage("./Images/background4.png"),
-                x: 0,
                 speed: 8,
-            },
-            {
-                src: loadImage("./Images/background8.png"),
-                x: 0,
-                speed: 9,
             }
         ];
         this.playerImg = loadImage("./Images/bean.png");
@@ -65,23 +27,33 @@ class Game {
 
     drawGame() {
         clear();
-        this.background.drawBackground();
-        this.player.drawPlayer();
-
-        if (frameCount % 60 === 0) {
-            this.obstacles.push(new Obstacle(this.burgerImg));  
+        if(this.endGame){
+        circle(30,30,400) // show this when you lose
         }
-
-        this.obstacles.forEach((obstacle) => {
-            obstacle.drawObstacle();
-        });
-
-        this.obstacles = this.obstacles.filter((obstacle) => {
-            if (obstacle.collision(this.player)) {
-                return false;
-            } else {
-                return true;
+       else if(this.score > 50){
+            rect(200,200,200,200) //show this when you win
+        }
+        else{
+            this.background.drawBackground();
+            this.player.drawPlayer();
+    
+            if (frameCount % 60 === 0) {
+                this.obstacles.push(new Obstacle(this.burgerImg));  
             }
-        });
+    
+            this.obstacles.forEach((obstacle) => {
+                obstacle.drawObstacle();
+            });
+    
+            this.obstacles = this.obstacles.filter((obstacle) => {
+                if (obstacle.collision(this.player)) {
+                    this.score++;
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+        }
+       
     }
 }
