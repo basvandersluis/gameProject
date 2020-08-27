@@ -4,7 +4,9 @@ class Game {
         this.score = 0;
         this.endGame = false;
         this.gameStatus = "startPage"
-        this.veggies=[]
+        this.avocados = [];
+        this.carrots = [];
+        this.lettuces = [];
     }
 
     preloadGame() {
@@ -19,6 +21,8 @@ class Game {
         this.playerImg = loadImage("./Images/bean.png");
         this.burgerImg = loadImage("./Images/burger.png");
         this.avocadoImg = loadImage("./Images/avocado.png");
+        this.carrotImg = loadImage("./Images/carrot.png");
+        this.lettuceImg = loadImage("./Images/lettuce.png");
         this.startPage = loadImage("./Images/startPage.png");
         this.gameOver = loadImage("./Images/gameOver.png");
         this.winner = loadImage("./Images/winner.png");
@@ -45,9 +49,6 @@ class Game {
             clearInterval(interval);
         } else if(this.score > 2) {
             this.gameStatus = "winner"
-           
-           //document.location.reload();
-           //clearInterval(interval);
         } else {
             this.background.drawBackground();
             this.player.drawPlayer();
@@ -56,25 +57,57 @@ class Game {
                 this.obstacles.push(new Obstacle(this.burgerImg));  
             }
             if (frameCount % 200 === 0) {
-                this.veggies.push(new Vegie(this.avocadoImg));  
+                this.avocados.push(new Avocado(this.avocadoImg));  
+            }
+            if (frameCount % 250 === 0) {
+                this.carrots.push(new Carrot(this.carrotImg));  
+            }
+            if (frameCount % 300 === 0) {
+                this.lettuces.push(new Lettuce(this.lettuceImg));  
             }
     
             this.obstacles.forEach((obstacle) => {
                 obstacle.drawObstacle();
             });
-            this.veggies.forEach(veg=>{
-                veg.drawObstacle()
-            })
+            this.avocados.forEach((avo) => {
+                avo.drawObstacle()
+            });
+            this.carrots.forEach((car) => {
+                car.drawObstacle();
+            });
+            this.lettuces.forEach((lett) => {
+                lett.drawObstacle();
+            });
     
+            // When the player hits the burger --> Game over
             this.obstacles = this.obstacles.filter((obstacle) => {
                 if (obstacle.collision(this.player)) {
-                     // when player hits burger it increments by 1.
                     return false;
                 } else {
                     return true;
                 }
             });
-            this.veggies = this.veggies.filter((obstacle) => {
+            
+            // When the player hits the avocado --> increment score by 1
+            this.avocados = this.avocados.filter((obstacle) => {
+                if (obstacle.collision(this.player)) {
+                    this.score++; 
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+
+            this.carrots = this.carrots.filter((obstacle) => {
+                if (obstacle.collision(this.player)) {
+                    this.score++; 
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+
+            this.lettuces = this.lettuces.filter((obstacle) => {
                 if (obstacle.collision(this.player)) {
                     this.score++; 
                     return false;

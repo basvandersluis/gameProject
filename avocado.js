@@ -1,9 +1,9 @@
-class Vegie {
+class Avocado {
     constructor(img) {
-        this.height = 60;
-        this.width = 100;
+        this.height = 90;
+        this.width = 160;
         this.x = width;
-        this.y = this.height + 20;
+        this.y = this.height - 10;
         //this.y = Math.random() * ((height - 30) - this.height) + this.height;
         this.image = img;
     }
@@ -13,7 +13,7 @@ class Vegie {
         let obstacleY = this.y + this.height / 2;
         let playerX = playerInfo.x + (playerInfo.width / 2 - 30);
         let playerY = playerInfo.y + playerInfo.height / 2;
-        console.log(obstacleX, obstacleY, playerX, playerY);
+        //console.log(obstacleX, obstacleY, playerX, playerY);
 
         if (dist(obstacleX, obstacleY, playerX, playerY) < 40) {
             return true;

@@ -1,5 +1,7 @@
 const game = new Game();
 
+let visibleCounter = 0;
+
 function preload() {
   game.preloadGame();
 }

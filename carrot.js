@@ -1,4 +1,4 @@
-class Obstacle {
+class Carrot {
     constructor(img) {
         this.height = 90;
         this.width = 160;
@@ -13,12 +13,10 @@ class Obstacle {
         let obstacleY = this.y + this.height / 2;
         let playerX = playerInfo.x + (playerInfo.width / 2 - 30);
         let playerY = playerInfo.y + playerInfo.height / 2;
-        console.log(obstacleX, obstacleY, playerX, playerY);
+        //console.log(obstacleX, obstacleY, playerX, playerY);
 
         if (dist(obstacleX, obstacleY, playerX, playerY) < 40) {
-            game.gameStatus = "game over"
             return true;
-        
         }
     }
     
