@@ -1,4 +1,4 @@
-class Avocado {
+class Broccoli {
     constructor(img) {
         this.height = 89;
         this.width = 160;

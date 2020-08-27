@@ -3,7 +3,7 @@ class Lettuce {
         this.height = 90;
         this.width = 160;
         this.x = width;
-        this.y = this.height - 10;
+        this.y = this.height - 50;
         //this.y = Math.random() * ((height - 30) - this.height) + this.height;
         this.image = img;
     }

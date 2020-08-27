@@ -7,6 +7,7 @@ class Game {
         this.avocados = [];
         this.carrots = [];
         this.lettuces = [];
+        this.broccolis = [];
     }
 
     preloadGame() {
@@ -23,6 +24,7 @@ class Game {
         this.avocadoImg = loadImage("./Images/avocado.png");
         this.carrotImg = loadImage("./Images/carrot.png");
         this.lettuceImg = loadImage("./Images/lettuce.png");
+        this.broccoliImg = loadImage("./Images/broccoli.png");
         this.startPage = loadImage("./Images/startPage.png");
         this.gameOver = loadImage("./Images/gameOver.png");
         this.winner = loadImage("./Images/winner.png");
@@ -47,7 +49,8 @@ class Game {
             this.gameStatus = "game over"
             document.location.reload();
             clearInterval(interval);
-        } else if(this.score > 2) {
+            // For the real game line 53 will be > 50
+        } else if(this.score > 10) {
             this.gameStatus = "winner"
         } else {
             this.background.drawBackground();
@@ -65,6 +68,9 @@ class Game {
             if (frameCount % 300 === 0) {
                 this.lettuces.push(new Lettuce(this.lettuceImg));  
             }
+            if (frameCount % 350 === 0) {
+                this.broccolis.push(new Broccoli(this.broccoliImg));  
+            }
     
             this.obstacles.forEach((obstacle) => {
                 obstacle.drawObstacle();
@@ -77,6 +83,9 @@ class Game {
             });
             this.lettuces.forEach((lett) => {
                 lett.drawObstacle();
+            });
+            this.broccolis.forEach((bro) => {
+                bro.drawObstacle();
             });
     
             // When the player hits the burger --> Game over
@@ -108,6 +117,15 @@ class Game {
             });
 
             this.lettuces = this.lettuces.filter((obstacle) => {
+                if (obstacle.collision(this.player)) {
+                    this.score++; 
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+
+            this.broccolis = this.broccolis.filter((obstacle) => {
                 if (obstacle.collision(this.player)) {
                     this.score++; 
                     return false;
