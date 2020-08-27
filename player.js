@@ -1,7 +1,7 @@
 class Player {
     constructor() {
-        this.height = 342;
-        this.width = 100;
+        this.height = 100;
+        this.width = 250;
         this.x = 0;
         this.y = height - this.height;
         this.gravity = 0.5;
@@ -14,12 +14,12 @@ class Player {
         this.velocity += this.gravity;
         this.y += this.velocity;
 
-        if (this.y >= height - this.height) {
-            this.y = height - this.height;
+        if (this.y >= height - (this.height + 243)) {
+            this.y = height - (this.height + 243);
         }
         
         scale(1, 2.5) 
-        image(this.image, this.x, this.y, this.height, this.width);
+        image(this.image, this.x, this.y, this.width, this.height);
     }
 
     jump() {
