@@ -1,9 +1,9 @@
 class Vegie {
     constructor(img) {
-        this.height = 20;
-        this.width = 50;
+        this.height = 60;
+        this.width = 100;
         this.x = width;
-        this.y = this.height + 100;
+        this.y = this.height + 20;
         //this.y = Math.random() * ((height - 30) - this.height) + this.height;
         this.image = img;
     }
@@ -16,9 +16,7 @@ class Vegie {
         console.log(obstacleX, obstacleY, playerX, playerY);
 
         if (dist(obstacleX, obstacleY, playerX, playerY) < 40) {
-            game.gameStatus = "game over"
             return true;
-        
         }
     }
     
