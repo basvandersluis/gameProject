@@ -50,7 +50,7 @@ class Game {
             document.location.reload();
             clearInterval(interval);
             // For the real game line 53 will be > 50
-        } else if(this.score > 10) {
+        } else if(this.score > 50) {
             this.gameStatus = "winner"
         } else {
             this.background.drawBackground();
